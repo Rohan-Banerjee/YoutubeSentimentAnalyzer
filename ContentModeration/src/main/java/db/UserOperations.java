@@ -28,7 +28,6 @@ public class UserOperations {
 		MongoCollection<Document> collection = db.getCollection("test");
 
 		Document document = collection.find(Filters.eq("email", email)).first();
-		System.out.println("We are here");
 		if(document.getString("password").equals(password))
 		{
 			Document d = new Document();

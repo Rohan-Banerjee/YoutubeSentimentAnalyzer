@@ -3,6 +3,7 @@ package rohan.projects.ContentModeration;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,12 @@ public class Controller {
 		ResponseEntity<String> response;
 		response = op.authenticateUser(email, password);
 		return response;
+	}
+	
+	@GetMapping("/rohan")
+	public String display()
+	{
+		return "rohan";
 	}
 }
 	
