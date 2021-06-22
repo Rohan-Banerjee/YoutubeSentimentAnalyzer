@@ -16,7 +16,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.util.JSON;
 
 
-public class Operations {
+public class UserOperations {
 
 
 	
@@ -31,7 +31,9 @@ public class Operations {
 		System.out.println("We are here");
 		if(document.getString("password").equals(password))
 		{
-			document.append("status", "success");
+			Document d = new Document();
+			d.append("status", "success");
+			d.append("email", email);
 			return new ResponseEntity<String>(document.toJson(),HttpStatus.ACCEPTED);	
 		}
 		else
@@ -60,7 +62,7 @@ public class Operations {
 	
 	public static void main(String args[])
 	{
-		Operations op = new Operations();
+		UserOperations op = new UserOperations();
 		op.authenticateUser("rohan.say7@gmail.co", "secret");
 	}
 }

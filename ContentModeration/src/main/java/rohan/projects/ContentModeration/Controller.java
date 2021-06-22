@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import db.Operations;
+import db.UserOperations;
 
 @RestController
 public class Controller {
@@ -14,7 +14,7 @@ public class Controller {
 	@PostMapping(value="/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> welcome(Model model, String email, String password)
 	{
-		Operations op = new Operations();
+		UserOperations op = new UserOperations();
 		ResponseEntity<String> response;
 		response = op.authenticateUser(email, password);
 		return response;
