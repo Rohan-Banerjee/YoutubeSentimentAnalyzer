@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if(request.getHeader("Auth")==null)
 		{
 			throw new NoAuthFieldException("No auth key");
-		}
+		} 
 		else {
 		String head = request.getHeader("Auth");
 		Jwt j = new Jwt();

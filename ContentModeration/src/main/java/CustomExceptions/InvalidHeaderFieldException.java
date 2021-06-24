@@ -2,7 +2,7 @@ package CustomExceptions;
 
 public class InvalidHeaderFieldException extends RuntimeException{
 
-	private String message;
+	private String message; 
 
 	public String getMessage() {
 		return message;

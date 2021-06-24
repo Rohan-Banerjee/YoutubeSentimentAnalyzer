@@ -21,7 +21,7 @@ public class InvalidExceptionHandler {
 		return new ResponseEntity<InvalidHeaderFieldException>(ihfe, HttpStatus.PRECONDITION_FAILED); 
 	}
 	
-	@ExceptionHandler
+	@ExceptionHandler 
 	public ResponseEntity<NoAuthFieldException> handleNoAuthField(NoAuthFieldException exception)
 	{
 		NoAuthFieldException ihfe = new NoAuthFieldException("No Auth Field");

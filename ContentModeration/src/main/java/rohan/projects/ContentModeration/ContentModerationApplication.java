@@ -9,5 +9,5 @@ public class ContentModerationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContentModerationApplication.class, args);
 	} 
- 
+  
 }
