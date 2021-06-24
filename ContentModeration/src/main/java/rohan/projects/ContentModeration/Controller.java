@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 
+import CustomExceptions.YoutubeException;
 import dao.YoutubeDao;
 import db.UserOperations;
 
@@ -32,6 +33,7 @@ public class Controller {
 	@PostMapping(value="/login/youtube", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> youtubeFetchCommentsUsingVideoID(String vid) throws GoogleJsonResponseException, GeneralSecurityException, IOException
 	{
+		try {
 		ArrayList<YoutubeDao> yd = new ArrayList<>();
 		yd = YoutubeClass.fetchCommentsUsingVid(vid, 10);
 		
@@ -42,8 +44,14 @@ public class Controller {
 		yd.get(i).setToxicity(pa.calToxicity(yd.get(i).getComment()));
 		}
 		return new ResponseEntity<String>(yd.toString(),HttpStatus.ACCEPTED);
-	} 
+	
+		}
+		catch(Exception e)
+		{
+			throw new YoutubeException("Check the Video ID again");
+		}
 	
 	
+}
 }
 	

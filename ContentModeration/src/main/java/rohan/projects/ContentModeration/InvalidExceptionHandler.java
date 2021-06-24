@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import CustomExceptions.InvalidHeaderFieldException;
 import CustomExceptions.NoAuthFieldException;
+import CustomExceptions.YoutubeException;
 
 @RestControllerAdvice
 public class InvalidExceptionHandler {
@@ -26,5 +27,12 @@ public class InvalidExceptionHandler {
 	{
 		NoAuthFieldException ihfe = new NoAuthFieldException("No Auth Field");
 		return new ResponseEntity<NoAuthFieldException>(ihfe, HttpStatus.PRECONDITION_FAILED); 
+	} 
+	
+	@ExceptionHandler 
+	public ResponseEntity<YoutubeException> YoutubeError(YoutubeException exception)
+	{
+		YoutubeException ye = new YoutubeException("Please check the Video ID");
+		return new ResponseEntity<YoutubeException>(ye, HttpStatus.BAD_REQUEST); 
 	} 
 }
