@@ -40,7 +40,7 @@ public class UserOperations {
 			d.append("email", email);
 			d.append("auth", token);
 			return new ResponseEntity<String>(d.toJson(),HttpStatus.ACCEPTED);	
-		}
+		} 
 		else
 		{
 			Document d = new Document();

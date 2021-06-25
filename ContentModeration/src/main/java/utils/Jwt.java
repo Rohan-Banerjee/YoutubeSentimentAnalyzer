@@ -18,7 +18,7 @@ public class Jwt {
 		    Algorithm algorithm = Algorithm.HMAC256("RohanBan");
 		    String token = JWT.create().withExpiresAt(new Date(System.currentTimeMillis() + (5 * 60 * 1000)))
 		        .withIssuer("auth0")
-		        .sign(algorithm);
+		        .sign(algorithm); 
 		    return token;
 		} catch (JWTCreationException exception){
 		    //Invalid Signing configuration / Couldn't convert Claims.

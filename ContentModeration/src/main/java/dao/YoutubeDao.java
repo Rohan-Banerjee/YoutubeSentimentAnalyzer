@@ -26,7 +26,7 @@ public class YoutubeDao {
 				"}";
 	}
 	public Double getToxicity() {
-		return Toxicity;
+		return Toxicity; 
 	}
 	public void setToxicity(Double toxicity) {
 		Toxicity = toxicity;

@@ -41,7 +41,7 @@ public class Controller {
 		ArrayList<YoutubeDao> yd = new ArrayList<>();
 		yd = YoutubeClass.fetchCommentsUsingVid(vid, 10);
 		
-		for(int i=0;i<10;i++)
+		for(int i=0;i<10;i++) 
 		{
 		//Analyze Toxicity
 		PerspectiveAPI pa = new PerspectiveAPI();
