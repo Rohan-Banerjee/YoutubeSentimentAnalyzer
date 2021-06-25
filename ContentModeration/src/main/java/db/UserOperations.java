@@ -15,6 +15,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.util.JSON;
 
+import utils.Jwt;
+
 
 public class UserOperations {
 
@@ -30,10 +32,14 @@ public class UserOperations {
 		Document document = collection.find(Filters.eq("email", email)).first();
 		if(document.getString("password").equals(password))
 		{
+			//Return JWT Token
+			Jwt j = new Jwt();
+			String token = j.createJWT();
 			Document d = new Document();
 			d.append("status", "success");
 			d.append("email", email);
-			return new ResponseEntity<String>(document.toJson(),HttpStatus.ACCEPTED);	
+			d.append("auth", token);
+			return new ResponseEntity<String>(d.toJson(),HttpStatus.ACCEPTED);	
 		}
 		else
 		{

@@ -27,10 +27,14 @@ public class Controller {
 		UserOperations op = new UserOperations();
 		ResponseEntity<String> response;
 		response = op.authenticateUser(email, password);
+		if(response!=null)
+		{
+			
+		}
 		return response;
 	} 
 
-	@PostMapping(value="/login/youtube", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/auth/youtube", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> youtubeFetchCommentsUsingVideoID(String vid) throws GoogleJsonResponseException, GeneralSecurityException, IOException
 	{
 		try {
