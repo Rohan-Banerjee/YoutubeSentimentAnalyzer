@@ -8,7 +8,7 @@ public class Connection {
 
 	public MongoDatabase getConnection()
 	{
-		MongoClient mongo = new MongoClient(new MongoClientURI("mongodb+srv://Rohan:Rb%40199701@cluster0.ze6ax.mongodb.net/test"));
+		MongoClient mongo = new MongoClient(new MongoClientURI("mongodb+srv://Rohan:Rohan@cluster0.p9ajp.mongodb.net/test"));
 		MongoDatabase db = mongo.getDatabase("test");
 		return db;
 	}
