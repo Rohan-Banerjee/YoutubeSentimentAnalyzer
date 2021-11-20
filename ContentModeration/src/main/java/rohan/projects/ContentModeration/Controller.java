@@ -33,6 +33,19 @@ public class Controller {
 		}
 		return response;
 	} 
+	
+	@PostMapping(value="/signup", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> welcome(String email, String password, String confirmPassword)
+	{
+		UserOperations op = new UserOperations();
+		ResponseEntity<String> response;
+		response = op.createUser(email, password,confirmPassword);
+		if(response!=null)
+		{
+			
+		}
+		return response;
+	} 
 
 	@PostMapping(value="/auth/youtube", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> youtubeFetchCommentsUsingVideoID(String vid) throws GoogleJsonResponseException, GeneralSecurityException, IOException

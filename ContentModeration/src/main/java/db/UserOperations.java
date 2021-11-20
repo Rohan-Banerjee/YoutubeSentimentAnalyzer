@@ -21,6 +21,49 @@ import utils.Jwt;
 public class UserOperations {
 
 
+	public ResponseEntity<String> createUser(String email, String password, String confirmPassword)
+	{
+		if (!(password.equals(confirmPassword)))
+		{
+			Document d = new Document();
+			d.append("status", "failed");
+			d.append("Error", "Passwords dont match");
+			return new ResponseEntity<>(d.toJson(),HttpStatus.BAD_REQUEST);
+		}
+		try {
+			Connection c = new Connection();
+			MongoDatabase db =  c.getConnection();
+			MongoCollection<Document> collection = db.getCollection("test");
+			FindIterable<Document> document = collection.find(Filters.eq("email",email));
+			if(document.first()==null)
+			{
+				Document newDocument = new Document(); 
+				newDocument.append("email", email);
+				newDocument.append("password", password);
+				collection.insertOne(newDocument);
+				newDocument.remove("password");
+				newDocument.append("msg", "User created successfully");
+				return new ResponseEntity<>(newDocument.toJson(),HttpStatus.ACCEPTED);
+			}
+			else
+			{
+				System.out.println(document.first().toJson());
+				Document d = new Document();
+				d.append("status", "failed");
+				d.append("Error", "User Email Already registered");
+				return new ResponseEntity<>(d.toJson(),HttpStatus.CONFLICT);
+			}
+		}
+		catch(Exception e)
+		{
+			Document d = new Document();
+			d.append("status", "failed");
+			d.append("Error", "Unknown error");
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		}
+
+	}
 	
 	public ResponseEntity<String> authenticateUser(String email, String password)
 	{
