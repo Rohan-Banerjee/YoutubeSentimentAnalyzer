@@ -2,6 +2,7 @@ package utils;
 
 import java.util.Date;
 
+import org.bson.Document;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -9,6 +10,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+import db.Connection;
 
 public class Jwt {
 
@@ -41,6 +46,17 @@ public class Jwt {
 		    //Invalid signature/claims
 			return "wrong";
 		}
+	}
+	
+	public void expireToken(String token)
+	{
+		
+		Connection c = new Connection();
+		MongoDatabase db = c.getConnection();
+		MongoCollection<Document> collection = db.getCollection("test");
+		Document d = new Document();
+		d.put("expired", token);
+		collection.insertOne(d);
 	}
 
 
