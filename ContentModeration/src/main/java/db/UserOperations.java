@@ -108,6 +108,17 @@ public class UserOperations {
 		}
 	}
 	
+	public ResponseEntity<String> expireUserSession(String auth)
+	{
+	
+			//Return JWT Token
+			Jwt j = new Jwt();
+			//expire JWT TOKEN
+			return new ResponseEntity<String>(HttpStatus.ACCEPTED);	
+
+		
+	}
+	
 	public static void main(String args[])
 	{
 		UserOperations op = new UserOperations();

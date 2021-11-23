@@ -34,6 +34,16 @@ public class Controller {
 		return response;
 	} 
 	
+	@PostMapping(value="/logout", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> logout(String auth)
+	{
+		UserOperations op = new UserOperations();
+		ResponseEntity<String> response=null;
+		//response = op.authenticateUser(email, password);
+		//op.expireJWTTOKEN
+		return response;
+	} 
+	
 	@PostMapping(value="/signup", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> welcome(String email, String password, String confirmPassword)
 	{
